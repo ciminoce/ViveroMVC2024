@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ViveroEF2024.Datos\ViveroEF2024.Datos.csproj" />
+    <ProjectReference Include="..\ViveroEF2024.Entidades\ViveroEF2024.Entidades.csproj" />
+    <ProjectReference Include="..\ViveroEF2024.Ioc\ViveroEF2024.Ioc.csproj" />
+    <ProjectReference Include="..\ViveroEF2024.Servicios\ViveroEF2024.Servicios.csproj" />
+  </ItemGroup>
+
+</Project>

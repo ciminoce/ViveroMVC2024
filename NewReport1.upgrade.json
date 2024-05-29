@@ -1,0 +1,74 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "",
+    "targetDisplayName": ".NET 8.0"
+  },
+  "analysisStartTime": "2024-05-02T23:57:29.3141333Z",
+  "analysisEndTime": "2024-05-02T23:57:30.6676126Z",
+  "stats": {
+    "summary": {
+      "projects": 6,
+      "issues": 0,
+      "incidents": 0,
+      "effort": 0
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 0,
+        "Optional": 0,
+        "Potential": 0,
+        "Information": 0
+      },
+      "category": {}
+    }
+  },
+  "projects": [
+    {
+      "path": "D:\\Codigo\\IO2024\\ViveroEF2024 - Iniciar Clase 03-05-2024\\ViveroEF2024.Consola\\ViveroEF2024.Consola.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "ruleInstances": []
+    },
+    {
+      "path": "D:\\Codigo\\IO2024\\ViveroEF2024 - Iniciar Clase 03-05-2024\\ViveroEF2024.Datos\\ViveroEF2024.Datos.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "ruleInstances": []
+    },
+    {
+      "path": "D:\\Codigo\\IO2024\\ViveroEF2024 - Iniciar Clase 03-05-2024\\ViveroEF2024.Entidades\\ViveroEF2024.Entidades.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "ruleInstances": []
+    },
+    {
+      "path": "D:\\Codigo\\IO2024\\ViveroEF2024 - Iniciar Clase 03-05-2024\\ViveroEF2024.Servicios\\ViveroEF2024.Servicios.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "ruleInstances": []
+    },
+    {
+      "path": "D:\\Codigo\\IO2024\\ViveroEF2024 - Iniciar Clase 03-05-2024\\ViveroEF2024.Shared\\ViveroEF2024.Shared.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "ruleInstances": []
+    },
+    {
+      "path": "D:\\Codigo\\IO2024\\ViveroEF2024 - Iniciar Clase 03-05-2024\\ViveroEF2024.Windows\\ViveroEF2024.Windows.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "ruleInstances": []
+    }
+  ],
+  "rules": {}
+}
