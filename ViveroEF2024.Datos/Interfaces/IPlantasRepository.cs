@@ -14,7 +14,6 @@ namespace ViveroEF2024.Datos.Interfaces
             int pageSize, Orden? orden = null, TipoDePlanta? tipoPlantaFiltro = null,
             TipoDeEnvase? tipoEnvaseFiltro=null);
         List<Planta> GetLista();
-        IEnumerable<object> GetListaAnonima();
         bool Existe(Planta planta);
         List<PlantaListDto> GetListaDto();
         Planta? GetPlantaPorId(int plantaId);

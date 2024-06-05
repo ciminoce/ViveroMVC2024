@@ -37,11 +37,14 @@ namespace ViveroEF2024.Web.Controllers
             {
                 return View(tipoVm);
             }
-            TipoDePlanta tipo = new TipoDePlanta
+            if (_servicios is null || _mapper is null)
             {
-                TipoDePlantaId = tipoVm.TipoDePlantaId,
-                Descripcion = tipoVm.Descripcion ?? string.Empty
-            };
+                return StatusCode(StatusCodes
+                    .Status500InternalServerError,
+                    "Dependencias no están configuradas correctamente");
+            }
+
+            TipoDePlanta tipo = _mapper.Map<TipoDePlanta>(tipoVm);
             if (_servicios?.Existe(tipo)??true)
             {
                 ModelState.AddModelError(string.Empty, "Registro duplicado!!!");

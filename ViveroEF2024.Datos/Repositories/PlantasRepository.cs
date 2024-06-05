@@ -185,23 +185,6 @@ namespace ViveroEF2024.Datos.Repositories
             return listaDto;
         }
 
-        public IEnumerable<object> GetListaAnonima()
-        {
-            return _context.Plantas
-                .Include(p => p.TipoDePlanta)
-                .Include(p => p.TipoDeEnvase)
-                .Select(n => new
-                {
-                    Id = n.PlantaId,
-                    Planta = n.Descripcion,
-                    TipoPlanta = n.TipoDePlanta != null ? n.TipoDePlanta.Descripcion : string.Empty,
-                    TipoEnvase = n.TipoDeEnvase != null ? n.TipoDeEnvase.Descripcion : string.Empty,
-                    PrecioVenta = n.PrecioVenta
-                }).ToList();
-        }
-
-
-
         public bool Existe(Planta planta)
         {
             if (planta.PlantaId == 0)
