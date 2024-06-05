@@ -11,6 +11,7 @@ namespace ViveroEF2024.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             DI.ConfigurarServicios(builder.Services);
+            builder.Services.AddAutoMapper(typeof(Program).Assembly);
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

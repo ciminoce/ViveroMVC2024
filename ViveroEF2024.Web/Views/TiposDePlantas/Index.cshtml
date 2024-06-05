@@ -1,14 +1,9 @@
-﻿@model IEnumerable<TipoDePlanta>
+﻿@model IPagedList<TipoDePlanta>
+@using X.PagedList
+@using X.PagedList.Mvc.Core;
+
 @{
     ViewData["Title"] = "Listado de Tipos de Plantas";
-}
-@if (TempData["success"] != null)
-{
-    var msg = TempData["success"]?.ToString();
-    <div class="alert alert-info alert-dismissible fade show w-75" role="alert">
-        <strong>Éxito!</strong> @msg.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 }
 <div class="row w-75 mb-4">
     <div class="col-6">
@@ -34,14 +29,14 @@
         {
             foreach (var item in Model)
             {
-                <tr>
+                <tr id="@item.TipoDePlantaId">
                     <td>@item.Descripcion</td>
                     <td>
-                        <a asp-controller="" asp-action="" class="btn btn-danger">
+                        <a onclick="Delete('/TiposDePlantas/Delete/@item.TipoDePlantaId',@item.TipoDePlantaId)" class="btn btn-danger">
                             <i class="bi bi-trash-fill"></i>
                             Borrar
                         </a>
-                        <a asp-controller="" asp-action="" class="btn btn-warning">
+                        <a asp-controller="TiposDePlantas" asp-action="Edit" asp-route-id="@item.TipoDePlantaId" class="btn btn-warning">
                             <i class="bi bi-pencil-square"></i>
                             Editar
                         </a>
@@ -59,3 +54,51 @@
         }
     </tbody>
 </table>
+<div class="d-flex">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+{
+    UlElementClasses = new[] { "pagination" },
+    LiElementClasses = new[] { "page-item" },
+    PageClasses = new[] { "page-link" },
+    DisplayLinkToIndividualPages = true,
+    DisplayPageCountAndCurrentLocation = false,
+    MaximumPageNumbersToDisplay = 10
+})
+</div>
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script type="text/javascript">
+        function Delete(url, id) {
+            // console.log(url);
+            // debugger;
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            if (data.success) {
+                                toastr.success(data.message);
+                                var row = document.getElementById(id);
+                                row.remove();
+                            } else {
+                                toastr.error(data.message);
+                            }
+                        }
+                    })
+                }
+            });
+        }
+
+    </script>
+}
