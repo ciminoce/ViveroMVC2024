@@ -15,7 +15,6 @@ namespace ViveroEF2024.Servicios.Intefaces
             TipoDeEnvase? tipoEnvaseFiltro=null);
 
         List<Planta> GetLista();
-        IEnumerable<object> GetListaAnonima();
         bool Existe(Planta planta);
         List<PlantaListDto> GetListaDto();
         Planta? GetPlantaPorId(int plantaId);

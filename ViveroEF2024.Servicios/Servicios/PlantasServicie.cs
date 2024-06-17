@@ -66,10 +66,6 @@ namespace ViveroEF2024.Servicios.Servicios
             return _repository.GetLista();
         }
 
-        public IEnumerable<object> GetListaAnonima()
-        {
-            return _repository.GetListaAnonima();
-        }
 
         public List<PlantaListDto> GetListaDto()
         {
