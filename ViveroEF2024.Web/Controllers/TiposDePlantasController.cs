@@ -26,57 +26,35 @@ namespace ViveroEF2024.Web.Controllers
                 .ToPagedList(currentPage,pageSize);
             return View(listaTipos);
         }
-        public IActionResult Create()
+        public IActionResult UpSert(int? id)
         {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(TipoDePlantaEditVm tipoVm)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(tipoVm);
-            }
             if (_servicios is null || _mapper is null)
             {
                 return StatusCode(StatusCodes
                     .Status500InternalServerError,
                     "Dependencias no están configuradas correctamente");
             }
+            TipoDePlantaEditVm tipoVm;
+            if (id is null || id.Value == 0)
+            {
+                tipoVm = new TipoDePlantaEditVm();
+            }
+            else
+            {
+                TipoDePlanta? tipo = _servicios.GetTipoDePlantaPorId(id.Value);
+                if (tipo is null)
+                {
+                    return NotFound();
+                }
+                tipoVm = _mapper
+                    .Map<TipoDePlantaEditVm>(tipo);
 
-            TipoDePlanta tipo = _mapper.Map<TipoDePlanta>(tipoVm);
-            if (_servicios?.Existe(tipo)??true)
-            {
-                ModelState.AddModelError(string.Empty, "Registro duplicado!!!");
-                return View(tipoVm);
             }
-            _servicios.Guardar(tipo);
-            TempData["success"] = "Registro agregado satisfactoriamente!!!";
-            return RedirectToAction("Index");
-        }
-        public IActionResult Edit(int? id)
-        {
-            if(id is null || id.Value == 0)
-            {
-                return NotFound();
-            }
-            if (_servicios is null || _mapper is null)
-            {
-                return StatusCode(StatusCodes
-                    .Status500InternalServerError,
-                    "Dependencias no están configuradas correctamente");
-            }
-            TipoDePlanta? tipo = _servicios.GetTipoDePlantaPorId(id.Value);
-            if (tipo is null)
-            {
-                return NotFound();
-            }
-            TipoDePlantaEditVm tipoVm=_mapper
-                .Map<TipoDePlantaEditVm>(tipo);
             return View(tipoVm);
-       }
+
+        }
         [HttpPost]
-        public IActionResult Edit(TipoDePlantaEditVm tipoVm) 
+        public IActionResult UpSert(TipoDePlantaEditVm tipoVm) 
         {
             if (!ModelState.IsValid)
             {
@@ -98,7 +76,7 @@ namespace ViveroEF2024.Web.Controllers
                     return View(tipoVm);
                 }
                 _servicios.Guardar(tipo);
-                TempData["success"] = "Registro editado satisfactoriamente!!!";
+                TempData["success"] = "Registro agregado/editado satisfactoriamente!!!";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

@@ -1,0 +1,47 @@
+﻿@model TipoDePlantaEditVm
+@{
+    ViewData["Title"] = "Agregar/Editar Tipo";
+}
+<form method="post" asp-controller="TiposDePlantas" asp-action="UpSert">
+    <input type="hidden" asp-for="TipoDePlantaId" />
+
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">@(Model.TipoDePlantaId==0?"Agregar Tipo":"Editar Tipo")</h2>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="Descripcion"></label>
+            <input asp-for="Descripcion" class="form-control"/>
+            <span asp-validation-for="Descripcion" class="text-danger"></span>
+        </div>
+        
+            @if (Model.TipoDePlantaId == 0)
+            {
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-floppy2-fill"></i>
+                    Guardar
+                </button>
+
+            }
+            else
+            {
+                <button type="submit" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i>
+                    Guardar
+                </button>
+
+            }
+        <a asp-controller="TiposDePlantas" asp-action="Index" class="btn btn-info">
+            <i class="bi bi-backspace"></i>
+            Volver
+        </a>
+
+
+    </div>
+</form>
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}
